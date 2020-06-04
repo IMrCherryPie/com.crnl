@@ -9,6 +9,7 @@ public class Message {
     private Long id;
 
     private String text;
+
     private String tag;
 
     @ManyToOne(fetch = FetchType.EAGER)

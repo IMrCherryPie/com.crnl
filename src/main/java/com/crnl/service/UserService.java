@@ -39,7 +39,7 @@ public class UserService implements UserDetailsService {
             /*Выполняем отправку сообщения только для не пустой строчки email*/
             String message = String.format(
                     "Hello, %s! \n" +
-                            "Welcome to Car Rental site. Please, visit next link: http:/localhost:8080/activate/%s",
+                            "Welcome to Car Rental site. Please, visit next link: http:/localhost:8080/activate/%s ",
                     user.getUsername(),
                     user.getActivationCode()
             );
@@ -66,6 +66,13 @@ public class UserService implements UserDetailsService {
         return userRepos.findAll();
     }
 
+    public User findById(Long id){
+        if (userRepos.findById(id).isPresent())
+            return userRepos.findById(id).get();
+        else
+            return new User();
+    }
+
     public void saveUser(User user, String username, Map<String, String> form) {
         user.setUsername(username);
 
@@ -79,8 +86,11 @@ public class UserService implements UserDetailsService {
             if (roles.contains(key)){
                 user.getRoles().add(Role.valueOf(key));
             }
-
         }
+        userRepos.save(user);
+    }
+
+    public void save(User user) {
         userRepos.save(user);
     }
 }

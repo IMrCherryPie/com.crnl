@@ -26,7 +26,7 @@
                 <input type="hidden" name="_csrf" value="${_csrf.token}" />
                 <button type="submit" class="btn btn-primary">Sign In</button>
                 <#if !isRegisterFrom>
-                    <a href="/registration">Add new user</a>
+                    <a href="/registration">Registration</a>
                 </#if>
             </div>
         </div>

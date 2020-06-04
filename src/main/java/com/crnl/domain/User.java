@@ -16,9 +16,14 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String username;
+
     private String password;
+
     private boolean active;
+
+    private boolean activePersonalData;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
@@ -29,6 +34,17 @@ public class User implements UserDetails {
 
     private String activationCode;
 
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "tUserPersonalData_id")
+    private UserPersonalData personalData;
+
+    public UserPersonalData getPersonalData() {
+        return personalData;
+    }
+
+    public void setPersonalData(UserPersonalData personalData) {
+        this.personalData = personalData;
+    }
 
     public Long getId() {
         return id;
@@ -97,6 +113,14 @@ public class User implements UserDetails {
 
     public boolean isAdmin(){
         return roles.contains(Role.ADMIN);
+    }
+
+    public boolean isActivePersonalData() {
+        return activePersonalData;
+    }
+
+    public void setActivPersonalData(boolean activPersonalData) {
+        this.activePersonalData = activPersonalData;
     }
 
     public String getEmail() {

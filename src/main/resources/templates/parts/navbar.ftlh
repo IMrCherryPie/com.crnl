@@ -15,12 +15,29 @@
                 <a class="nav-link" href="/main">Messages</a>
             </li>
             <#if isAdmin>
-            <li class="nav-item">
-                <a class="nav-link" href="/user">User list</a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user">User list</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/rental">Rental list</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/car">Car list</a>
+                </li>
             </#if>
+            <li class="nav-item">
+                <a class="nav-link" href="/companyList">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/carPrice">Car price</a>
+            </li>
+
+
+
         </ul>
-        <div class="navbar-text mr-3">${name}</div>
+        <#if name != "uncnown"> <a href="/user/personalData/${userId}"> </#if>
+            <div class="navbar-text mr-3">${name}</div>
+            <#if name != "uncnown"> </a> </#if>
         <@l.logout />
     </div>
 </nav>

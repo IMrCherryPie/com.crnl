@@ -13,8 +13,6 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-//    @Autowired
-//    private DataSource dataSource;
 
     @Autowired
     private UserService userService;
@@ -23,7 +21,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/", "/registration", "/activate/*").permitAll()
+                    .antMatchers("/", "/registration", "/activate/*","/company/*", "/car/*", "/carPrice/*").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()

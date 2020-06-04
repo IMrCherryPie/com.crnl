@@ -1,6 +1,7 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page>
+    <center><h2><p style="color: darkolivegreen">Отзывы от клиентов о компании</p></h2></center>
     <div class="form-group">
         <form method="get" action ="/main" class="form-inline">
             <input type="text" name="filter" class="form-control" value="${filter?ifExists}" placeholder="Search by tag"/>
@@ -17,12 +18,12 @@
                     <input type="text" class="form-control" name="text" placeholder="Введите сообщение" required />
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="tag" placeholder="Тэг" required />
+                    <input type="text" class="form-control" name="tag" placeholder="Придумайте тэг к своему отзыву" required />
                 </div>
                 <div class="form-group">
                     <div class="custom-file">
                         <input type="file" name="file" id="customFile" />
-                        <label class="custom-file-label" for="customFile">Choice file</label>
+                        <label class="custom-file-label" for="customFile">Можете прикрепить одну фотографию</label>
                     </div>
                 </div>
                 <input type="hidden" name="_csrf" value="${_csrf.token}" />
@@ -42,7 +43,7 @@
                 </div>
                 <div class="m-2">
                     <span>${message.text}</span>
-                    <i>${message.tag}</i>
+                    <span class="badge badge-primary"><i>${message.tag}</i></span>
                 </div>
                 <div class="card-footer text-muted">
                     ${message.getAuthorName()}
